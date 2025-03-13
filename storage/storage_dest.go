@@ -1568,7 +1568,10 @@ func (s *storageImageDestination) CommitWithOptions(ctx context.Context, options
 	}
 
 	// Set up to save the physical reference of the image.
-	imgOptions.PullSource = options.UnparsedToplevel.PhysicalReference().DockerReference().String()
+	physicalRef := options.UnparsedToplevel.PhysicalReference()
+	if physicalRef != nil {
+		imgOptions.PullSource = physicalRef.DockerReference().String()
+	}
 
 	oldNames := []string{}
 	img, err := s.imageRef.transport.store.CreateImage(intendedID, nil, lastLayer, "", imgOptions)
