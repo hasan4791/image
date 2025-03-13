@@ -16,6 +16,11 @@ func (f ForbiddenImageSource) Reference() types.ImageReference {
 	panic("Unexpected call to a mock function")
 }
 
+// Reference is a mock that panics.
+func (f ForbiddenImageSource) PhysicalReference() types.ImageReference {
+	panic("Unexpected call to a mock function")
+}
+
 // Close is a mock that panics.
 func (f ForbiddenImageSource) Close() error {
 	panic("Unexpected call to a mock function")

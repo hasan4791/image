@@ -15,6 +15,11 @@ func (ref ForbiddenUnparsedImage) Reference() types.ImageReference {
 	panic("unexpected call to a mock function")
 }
 
+// PhysicalReference is a mock that panics.
+func (ref ForbiddenUnparsedImage) PhysicalReference() types.ImageReference {
+	panic("unexpected call to a mock function")
+}
+
 // Manifest is a mock that panics.
 func (ref ForbiddenUnparsedImage) Manifest(ctx context.Context) ([]byte, string, error) {
 	panic("unexpected call to a mock function")

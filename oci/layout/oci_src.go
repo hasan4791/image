@@ -93,6 +93,11 @@ func (s *ociImageSource) Reference() types.ImageReference {
 	return s.ref
 }
 
+// PhysicalReference returns the reference used to pull this source, if the source is registry
+func (s *ociImageSource) PhysicalReference() types.ImageReference {
+	return nil
+}
+
 // Close removes resources associated with an initialized ImageSource, if any.
 func (s *ociImageSource) Close() error {
 	s.client.CloseIdleConnections()

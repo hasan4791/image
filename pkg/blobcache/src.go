@@ -50,6 +50,11 @@ func (s *blobCacheSource) Reference() types.ImageReference {
 	return s.reference
 }
 
+// PhysicalReference returns the reference used to pull this source, if the source is registry
+func (s *blobCacheSource) PhysicalReference() types.ImageReference {
+	return nil
+}
+
 func (s *blobCacheSource) Close() error {
 	logrus.Debugf("finished reading from image %q using blob cache: cache had %d hits, %d misses, %d errors", transports.ImageName(s.reference), s.cacheHits, s.cacheMisses, s.cacheErrors)
 	return s.source.Close()

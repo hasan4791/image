@@ -1309,6 +1309,11 @@ func (u *uncommittedImageSource) Reference() types.ImageReference {
 	return u.d.Reference()
 }
 
+// PhysicalReference returns the reference used to pull this source, if the source is registry
+func (u *uncommittedImageSource) PhysicalReference() types.ImageReference {
+	return nil
+}
+
 func (u *uncommittedImageSource) Close() error {
 	return nil
 }
@@ -1561,6 +1566,10 @@ func (s *storageImageDestination) CommitWithOptions(ctx context.Context, options
 			return err
 		}
 	}
+
+	// Set up to save the physical reference of the image.
+	imgOptions.PullSource = options.UnparsedToplevel.PhysicalReference().DockerReference().String()
+
 	oldNames := []string{}
 	img, err := s.imageRef.transport.store.CreateImage(intendedID, nil, lastLayer, "", imgOptions)
 	if err != nil {

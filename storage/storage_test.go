@@ -741,6 +741,9 @@ type unparsedImage struct {
 func (u *unparsedImage) Reference() types.ImageReference {
 	return u.imageReference
 }
+func (u *unparsedImage) PhysicalReference() types.ImageReference {
+	return nil
+}
 func (u *unparsedImage) Manifest(context.Context) ([]byte, string, error) {
 	return u.manifestBytes, u.manifestType, nil
 }
